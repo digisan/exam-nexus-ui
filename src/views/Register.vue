@@ -14,9 +14,7 @@
                 <label>确认密码:</label>
                 <input type="password" v-model="confirmPassword" required />
             </div>
-
             <h-captcha ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => { captchaResp = token }" @expired="captchaResp = null" />
-
             <button type="submit" :disabled="!captchaResp || password !== confirmPassword">注册</button>
         </form>
     </div>
@@ -28,7 +26,6 @@ import HCaptcha from '@hcaptcha/vue3-hcaptcha';
 import { useAuthStore } from '../store/auth';
 
 const authStore = useAuthStore()
-// const user = ref(authStore.user)
 
 const email = ref('');
 const password = ref('');

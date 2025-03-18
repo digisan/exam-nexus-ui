@@ -1,5 +1,9 @@
 import { defineStore } from 'pinia';
 
+const PREFIX = 'http://localhost:8001'
+const API_LOGIN = `${PREFIX}/api/auth/login`
+const API_REGISTER = `${PREFIX}/api/auth/register`
+
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         user: null,
@@ -7,27 +11,25 @@ export const useAuthStore = defineStore('auth', {
     }),
     actions: {
 
-        // not tested
         async login(credentials: any) {
-            const resp = await fetch('http://localhost:8001/api/auth/login', {
+            const resp = await fetch(API_LOGIN, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(credentials),
             });
-
-            const data = await resp.json();
             if (resp.ok) {
-                this.user = data.user;
-                this.token = data.token;
-            } else {
-                throw new Error(data.message || '登录失败');
+                const data = await resp.json();
+                if (data.token) {
+                    this.user = credentials.email; // current user
+                    this.token = data.token // current token
+                }
+                return data
             }
+            return { "token": "", "message": `internal error: @access ${API_LOGIN}` }
         },
 
-        // tested
         async register(data: any) {
-            const api = 'http://localhost:8001/api/auth/register';
-            const resp = await fetch(api, {
+            const resp = await fetch(API_REGISTER, {
                 method: 'POST',
                 mode: 'cors',
                 headers: { 'Content-Type': 'application/json' },
@@ -36,7 +38,11 @@ export const useAuthStore = defineStore('auth', {
             if (resp.ok) {
                 return await resp.json();
             }
-            return { "success": false, "message": `internal error: @access ${api}` }
+            return { "success": false, "message": `internal error: @access ${API_REGISTER}` }
         },
+
+        async logout() {
+
+        }
     },
 });

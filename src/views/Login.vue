@@ -10,9 +10,7 @@
                 <label>密码:</label>
                 <input type="password" v-model="password" required />
             </div>
-
             <h-captcha ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => captchaResp = token" @expired="captchaResp = null" />
-
             <button type="submit" :disabled="!captchaResp">登录</button>
         </form>
     </div>
@@ -21,6 +19,11 @@
 <script setup>
 import { ref } from 'vue';
 import HCaptcha from '@hcaptcha/vue3-hcaptcha';
+import { useAuthStore } from '../store/auth';
+import { storeToRefs } from 'pinia';
+
+const authStore = useAuthStore()
+const { user, token } = storeToRefs(authStore)
 
 const email = ref('');
 const password = ref('');
@@ -34,21 +37,16 @@ const submitLogin = async () => {
         return;
     }
 
-    const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            email: email.value,
-            password: password.value,
-            captcha: captchaResp.value,
-        }),
-    });
+    const result = await authStore.login({
+        email: email.value,
+        password: password.value,
+        captchaToken: captchaResp.value,
+    })
 
-    const data = await response.json();
-    if (data.success) {
-        alert('登录成功');
+    if (result.token) {
+        alert(`以${user.value}身份登录成功`);
     } else {
-        alert('登录失败: ' + data.message);
+        alert('登录失败: ' + result.message);
     }
 
     // 重新验证 hCaptcha
