@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 const PREFIX = 'http://localhost:8001'
 const API_LOGIN = `${PREFIX}/api/auth/login`
 const API_REGISTER = `${PREFIX}/api/auth/register`
+const API_LOGOUT = `${PREFIX}/api/auth/logout`
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -14,6 +15,7 @@ export const useAuthStore = defineStore('auth', {
         async login(credentials: any) {
             const resp = await fetch(API_LOGIN, {
                 method: 'POST',
+                mode: 'cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(credentials),
             });
@@ -42,7 +44,19 @@ export const useAuthStore = defineStore('auth', {
         },
 
         async logout() {
-
+            if (!this.token) return { "message": `@access ${API_LOGOUT} need a token` };
+            const resp = await fetch(API_LOGOUT, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.token}`
+                },
+            });
+            if (resp.ok) {
+                return await resp.json();
+            }
+            return { "message": `internal error: @access ${API_LOGOUT}` }
         }
     },
 });

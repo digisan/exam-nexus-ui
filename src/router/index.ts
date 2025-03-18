@@ -1,18 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
+import Dashboard from '../views/Dashboard.vue';
 
 const routes = [
     { path: '/', component: Login },
     { path: '/login', component: Login },
-    // { path: '/logout', component: Logout },
     { path: '/register', component: Register },
-    // {
-    //     path: '/dashboard',
-    //     name: 'Dashboard',
-    //     component: Dashboard,
-    //     meta: { requiresAuth: true },  // 需要身份验证
-    // },
+    {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: Dashboard,
+        meta: { requiresAuth: true },  // 需要身份验证
+    },
 ];
 
 const router = createRouter({

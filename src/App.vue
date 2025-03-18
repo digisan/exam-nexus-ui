@@ -37,6 +37,7 @@ import HelloWorld from './components/HelloWorld.vue'
     <nav>
         <router-link to="/login">登录</router-link>
         <router-link to="/register">注册</router-link>
+        <router-link to="/dashboard">TEST</router-link>
     </nav>
     <router-view></router-view>
 </template>

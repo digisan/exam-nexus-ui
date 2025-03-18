@@ -21,7 +21,9 @@ import { ref } from 'vue';
 import HCaptcha from '@hcaptcha/vue3-hcaptcha';
 import { useAuthStore } from '../store/auth';
 import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const authStore = useAuthStore()
 const { user, token } = storeToRefs(authStore)
 
@@ -45,6 +47,7 @@ const submitLogin = async () => {
 
     if (result.token) {
         alert(`以${user.value}身份登录成功`);
+        router.push('/dashboard');
     } else {
         alert('登录失败: ' + result.message);
     }
