@@ -31,18 +31,25 @@ import HelloWorld from './components/HelloWorld.vue'
 }
 </style> -->
 
-<!-- --------------------------------------------------------------------------- --> 
+<!-- --------------------------------------------------------------------------- -->
 
 <template>
     <nav>
-        <router-link to="/login">登录</router-link>
-        <router-link to="/register">注册</router-link>
-        <router-link to="/dashboard">TEST</router-link>
+        <router-link v-if="showLinkIn" to="/login">Login</router-link>
+        <router-link v-if="showLinkReg" to="/register">Register</router-link>
+        <router-link v-if="showLinkOut" to="/">Logout</router-link>
     </nav>
     <router-view></router-view>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import { useUIStore } from './store/ui';
+import { storeToRefs } from 'pinia';
+
+const uiStore = useUIStore();
+const { showLinkReg, showLinkIn, showLinkOut } = storeToRefs(uiStore);
+
 </script>
 
 <style>

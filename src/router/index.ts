@@ -11,7 +11,7 @@ const routes = [
         path: '/dashboard',
         name: 'Dashboard',
         component: Dashboard,
-        meta: { requiresAuth: true },  // 需要身份验证
+        // meta: { requiresAuth: true },  // 需要身份验证
     },
 ];
 

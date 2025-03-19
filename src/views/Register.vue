@@ -21,17 +21,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import HCaptcha from '@hcaptcha/vue3-hcaptcha';
 import { useAuthStore } from '../store/auth';
+import { useUIStore } from '../store/ui';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const authStore = useAuthStore()
+const uiStore = useUIStore()
 
 const email = ref('');
 const password = ref('');
 const confirmPassword = ref("");
 const captchaResp = ref(null);
 const captcha = ref(null);
+
+onMounted(() => {
+    uiStore.styleRegister();
+});
 
 const submitRegister = async () => {
 
@@ -53,12 +62,13 @@ const submitRegister = async () => {
 
     if (result.success) {
         alert('注册成功');
+        await router.push('/login');
     } else {
         alert(`注册失败: ${result.message}`);
     }
 
     // 重新验证 hCaptcha
-    captcha.value.resetCaptcha();
+    // captcha.value.resetCaptcha();
 };
 </script>
 

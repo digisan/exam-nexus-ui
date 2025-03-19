@@ -17,20 +17,28 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import HCaptcha from '@hcaptcha/vue3-hcaptcha';
 import { useAuthStore } from '../store/auth';
+import { useUIStore } from '../store/ui';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
+
 const authStore = useAuthStore()
 const { user, token } = storeToRefs(authStore)
+
+const uiStore = useUIStore();
 
 const email = ref('');
 const password = ref('');
 const captchaResp = ref(null);
 const captcha = ref(null);
+
+onMounted(() => {
+    uiStore.styleLogin();
+});
 
 const submitLogin = async () => {
 
@@ -47,13 +55,13 @@ const submitLogin = async () => {
 
     if (result.token) {
         alert(`以${user.value}身份登录成功`);
-        router.push('/dashboard');
+        await router.push('/dashboard');
     } else {
         alert('登录失败: ' + result.message);
     }
 
     // 重新验证 hCaptcha
-    captcha.value.resetCaptcha();
+    // captcha.value.resetCaptcha();
 };
 </script>
 
