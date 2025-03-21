@@ -1,22 +1,24 @@
 <template>
-    <div class="container">
-        <h2>注册</h2>
-        <form @submit.prevent="submitRegister">
-            <div class="form-group">
-                <label>邮箱:</label>
-                <input type="email" v-model="email" required />
-            </div>
-            <div class="form-group">
-                <label>密码:</label>
-                <input type="password" v-model="password" required />
-            </div>
-            <div class="form-group">
-                <label>确认密码:</label>
-                <input type="password" v-model="confirmPassword" required />
-            </div>
-            <h-captcha ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => { captchaResp = token }" @expired="captchaResp = null" />
-            <button type="submit" :disabled="!captchaResp || password !== confirmPassword">注册</button>
-        </form>
+    <div class="center-container">
+        <div class="container">
+            <h2>{{ $t('register') }}</h2>
+            <form @submit.prevent="submitRegister">
+                <div class="form-group">
+                    <label>{{ $t('email') }}:</label>
+                    <input type="email" v-model="email" required />
+                </div>
+                <div class="form-group">
+                    <label>{{ $t('password') }}:</label>
+                    <input type="password" v-model="password" required />
+                </div>
+                <div class="form-group">
+                    <label>{{ $t('confirm-password') }}:</label>
+                    <input type="password" v-model="confirmPassword" required />
+                </div>
+                <h-captcha ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => { captchaResp = token }" @expired="captchaResp = null" />
+                <button type="submit" :disabled="!captchaResp || password !== confirmPassword">{{ $t('register') }}</button>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -26,6 +28,9 @@ import HCaptcha from '@hcaptcha/vue3-hcaptcha';
 import { useAuthStore } from '../store/auth';
 import { useUIStore } from '../store/ui';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
+const { locale, t } = useI18n();
 
 const router = useRouter()
 
@@ -73,12 +78,17 @@ const submitRegister = async () => {
 </script>
 
 <style scoped>
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .container {
     width: 100%;
     max-width: 400px;
-    margin: 50px auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     border-radius: 8px;
     background: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -100,9 +110,9 @@ label {
 
 input {
     width: 100%;
-    padding: 10px;
+    padding: 8px;
+    margin: 5px -10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
 button {

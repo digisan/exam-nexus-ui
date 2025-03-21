@@ -34,10 +34,13 @@ import HelloWorld from './components/HelloWorld.vue'
 <!-- --------------------------------------------------------------------------- -->
 
 <template>
-    <nav>
-        <router-link v-if="showLinkIn" to="/login">Login</router-link>
-        <router-link v-if="showLinkReg" to="/register">Register</router-link>
-        <router-link v-if="showLinkOut" to="/">Logout</router-link>
+    <LangSwitch></LangSwitch>
+    <nav class="register-login">
+        <router-link v-if="showLinkIn" to="/login">{{ $t('login') }}</router-link>
+        <router-link v-if="showLinkReg" to="/register">{{ $t('register') }}</router-link>
+    </nav>
+    <nav class="logout">
+        <router-link v-if="showLinkOut" to="/">{{ $t('logout') }}</router-link>
     </nav>
     <router-view></router-view>
 </template>
@@ -46,24 +49,34 @@ import HelloWorld from './components/HelloWorld.vue'
 import { ref } from 'vue';
 import { useUIStore } from './store/ui';
 import { storeToRefs } from 'pinia';
+import { useI18n } from 'vue-i18n';
+import LangSwitch from './components/LangSwitch.vue';
+
+const { locale, t } = useI18n();
 
 const uiStore = useUIStore();
 const { showLinkReg, showLinkIn, showLinkOut } = storeToRefs(uiStore);
 
 </script>
 
-<style>
-nav {
+<style scoped>
+.register-login {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 10px;
+}
+
+.logout {
     position: absolute;
     top: 10px;
-    right: 30px;
-    display: flex;
-    gap: 10px;
-
+    right: 120px;
 }
 
 a {
+    font-size: 16px;
     text-decoration: none;
-    color: #42b983;
+    color: #6fa8fd;
 }
 </style>

@@ -1,0 +1,11 @@
+{
+    "hello": "Hello",
+    "welcome": "Welcome to ExamNexus",
+    "switchLang": "Switch to Chinese",
+    "login": "Sign In",
+    "email": "Email",
+    "password": "Password",
+    "confirm-password": "Confirm Password",
+    "register": "Sign Up",
+    "logout": "Sign Out"
+}

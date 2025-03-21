@@ -1,0 +1,11 @@
+{
+    "hello": "你好",
+    "welcome": "欢迎来到ExamNexus",
+    "switchLang": "切换到英文",
+    "login": "登录",
+    "email": "邮箱",
+    "password": "密码",
+    "confirm-password": "确认密码",
+    "register": "注册",
+    "logout": "登出"
+}

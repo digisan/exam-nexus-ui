@@ -1,18 +1,20 @@
 <template>
-    <div class="container">
-        <h2>登录</h2>
-        <form @submit.prevent="submitLogin">
-            <div class="form-group">
-                <label>邮箱:</label>
-                <input type="email" v-model="email" required />
-            </div>
-            <div class="form-group">
-                <label>密码:</label>
-                <input type="password" v-model="password" required />
-            </div>
-            <h-captcha ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => captchaResp = token" @expired="captchaResp = null" />
-            <button type="submit" :disabled="!captchaResp">登录</button>
-        </form>
+    <div class="center-container">
+        <div class="container">
+            <h2>{{ $t('login') }}</h2>
+            <form @submit.prevent="submitLogin">
+                <div class="form-group">
+                    <label>{{ $t('email') }}:</label>
+                    <input type="email" v-model="email" required />
+                </div>
+                <div class="form-group">
+                    <label>{{ $t('password') }}:</label>
+                    <input type="password" v-model="password" required />
+                </div>
+                <h-captcha ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => captchaResp = token" @expired="captchaResp = null" />
+                <button type="submit" :disabled="!captchaResp">{{ $t('login') }}</button>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -23,13 +25,15 @@ import { useAuthStore } from '../store/auth';
 import { useUIStore } from '../store/ui';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
+const { locale, t } = useI18n();
 
 const router = useRouter()
 
 const authStore = useAuthStore()
-const { user, token } = storeToRefs(authStore)
-
 const uiStore = useUIStore();
+const { user, token } = storeToRefs(authStore)
 
 const email = ref('');
 const password = ref('');
@@ -65,13 +69,18 @@ const submitLogin = async () => {
 };
 </script>
 
-<style>
+<style scoped>
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .container {
     width: 100%;
     max-width: 400px;
-    margin: 50px auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     border-radius: 8px;
     background: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
