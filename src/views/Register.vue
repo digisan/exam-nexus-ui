@@ -1,24 +1,22 @@
 <template>
-    <div class="center-container">
-        <div class="container">
-            <h2>{{ $t('register') }}</h2>
-            <form @submit.prevent="submitRegister">
-                <div class="form-group">
-                    <label>{{ $t('email') }}:</label>
-                    <input type="email" v-model="email" required />
-                </div>
-                <div class="form-group">
-                    <label>{{ $t('password') }}:</label>
-                    <input type="password" v-model="password" required />
-                </div>
-                <div class="form-group">
-                    <label>{{ $t('confirm-password') }}:</label>
-                    <input type="password" v-model="confirmPassword" required />
-                </div>
-                <h-captcha ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => { captchaResp = token }" @expired="captchaResp = null" />
-                <button type="submit" :disabled="!captchaResp || password !== confirmPassword">{{ $t('register') }}</button>
-            </form>
-        </div>
+    <div class="container">
+        <h2 class="text-center">{{ $t('register') }}</h2>
+        <form @submit.prevent="submitRegister">
+            <div class="form-group">
+                <label>{{ $t('email') }}:</label>
+                <input type="email" v-model="email" required />
+            </div>
+            <div class="form-group">
+                <label>{{ $t('password') }}:</label>
+                <input type="password" v-model="password" required />
+            </div>
+            <div class="form-group">
+                <label>{{ $t('confirm-password') }}:</label>
+                <input type="password" v-model="confirmPassword" required />
+            </div>
+            <h-captcha ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => { captchaResp = token }" @expired="captchaResp = null" />
+            <button type="submit" :disabled="!captchaResp || password !== confirmPassword">{{ $t('register') }}</button>
+        </form>
     </div>
 </template>
 
@@ -78,12 +76,6 @@ const submitRegister = async () => {
 </script>
 
 <style scoped>
-.center-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .container {
     width: 100%;
     max-width: 400px;

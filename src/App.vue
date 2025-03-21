@@ -34,15 +34,21 @@ import HelloWorld from './components/HelloWorld.vue'
 <!-- --------------------------------------------------------------------------- -->
 
 <template>
-    <LangSwitch></LangSwitch>
-    <nav class="register-login">
-        <router-link v-if="showLinkIn" to="/login">{{ $t('login') }}</router-link>
-        <router-link v-if="showLinkReg" to="/register">{{ $t('register') }}</router-link>
-    </nav>
-    <nav class="logout">
+
+    <LangSwitcher></LangSwitcher>
+
+    <div class="flex flex-col items-center justify-center min-h-screen">
+        <nav class="max-w-[400px] w-full flex flex-row-reverse mr-2 text-gray-500 bg-blue-10">
+            <router-link v-if="showLinkIn" to="/login">{{ $t('login') }}</router-link>
+            <router-link v-if="showLinkReg" to="/register">{{ $t('register') }}</router-link>
+        </nav>
+        <router-view></router-view>
+    </div>
+
+    <!-- <nav class="fixed top-0 right-0 mt-4 mr-4">
         <router-link v-if="showLinkOut" to="/">{{ $t('logout') }}</router-link>
-    </nav>
-    <router-view></router-view>
+    </nav> -->
+
 </template>
 
 <script setup>
@@ -50,7 +56,7 @@ import { ref } from 'vue';
 import { useUIStore } from './store/ui';
 import { storeToRefs } from 'pinia';
 import { useI18n } from 'vue-i18n';
-import LangSwitch from './components/LangSwitch.vue';
+import LangSwitcher from './components/LangSwitcher.vue';
 
 const { locale, t } = useI18n();
 
@@ -59,24 +65,4 @@ const { showLinkReg, showLinkIn, showLinkOut } = storeToRefs(uiStore);
 
 </script>
 
-<style scoped>
-.register-login {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: row-reverse;
-    margin-bottom: 10px;
-}
-
-.logout {
-    position: absolute;
-    top: 10px;
-    right: 120px;
-}
-
-a {
-    font-size: 16px;
-    text-decoration: none;
-    color: #6fa8fd;
-}
-</style>
+<style scoped></style>

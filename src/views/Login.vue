@@ -1,20 +1,18 @@
 <template>
-    <div class="center-container">
-        <div class="container">
-            <h2>{{ $t('login') }}</h2>
-            <form @submit.prevent="submitLogin">
-                <div class="form-group">
-                    <label>{{ $t('email') }}:</label>
-                    <input type="email" v-model="email" required />
-                </div>
-                <div class="form-group">
-                    <label>{{ $t('password') }}:</label>
-                    <input type="password" v-model="password" required />
-                </div>
-                <h-captcha ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => captchaResp = token" @expired="captchaResp = null" />
-                <button type="submit" :disabled="!captchaResp">{{ $t('login') }}</button>
-            </form>
-        </div>
+    <div class="container">
+        <h2 class="text-center">{{ $t('login') }}</h2>
+        <form @submit.prevent="submitLogin">
+            <div class="form-group">
+                <label>{{ $t('email') }}:</label>
+                <input type="email" v-model="email" required />
+            </div>
+            <div class="form-group">
+                <label>{{ $t('password') }}:</label>
+                <input type="password" v-model="password" required />
+            </div>
+            <h-captcha ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => captchaResp = token" @expired="captchaResp = null" />
+            <button type="submit" :disabled="!captchaResp">{{ $t('login') }}</button>
+        </form>
     </div>
 </template>
 
@@ -70,12 +68,6 @@ const submitLogin = async () => {
 </script>
 
 <style scoped>
-.center-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .container {
     width: 100%;
     max-width: 400px;
