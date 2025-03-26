@@ -1,17 +1,17 @@
 <template>
-    <div class="container">
-        <h2 class="text-center">{{ $t('login') }}</h2>
+    <div class="w-full max-w-[400px] p-5 border-2 border-gray-300 rounded-lg bg-white shadow-md">
+        <h2 class="text-center text-2xl font-bold">{{ $t('login') }}</h2>
         <form @submit.prevent="submitLogin">
-            <div class="form-group">
-                <label>{{ $t('email') }}:</label>
-                <input type="email" v-model="email" required />
+            <div class="flex flex-col items-start mb-4">
+                <label class="font-bold mb-1">{{ $t('email') }}:</label>
+                <input class="w-full p-2 m-[5px_0px_0px_0px] border border-gray-300" type="email" v-model="email" required />
             </div>
-            <div class="form-group">
-                <label>{{ $t('password') }}:</label>
-                <input type="password" v-model="password" required />
+            <div class="flex flex-col items-start mb-4">
+                <label class="font-bold mb-1">{{ $t('password') }}:</label>
+                <input class="w-full p-2 m-[5px_0px_0px_0px] border border-gray-300" type="password" v-model="password" required />
             </div>
-            <h-captcha ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => captchaResp = token" @expired="captchaResp = null" />
-            <button type="submit" :disabled="!captchaResp">{{ $t('login') }}</button>
+            <h-captcha class="w-full mt-3 flex justify-left scale-[0.8] origin-left" ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => captchaResp = token" @expired="captchaResp = null" />
+            <button class="w-full p-2.5 bg-[#42b983] text-white border-none cursor-pointer" type="submit" :disabled="!captchaResp">{{ $t('login') }}</button>
         </form>
     </div>
 </template>
@@ -67,44 +67,4 @@ const submitLogin = async () => {
 };
 </script>
 
-<style scoped>
-.container {
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    /* 确保 label 左对齐 */
-    margin-bottom: 15px;
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    /* 让 label 和输入框有间距 */
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    margin: 5px -10px;
-    border: 1px solid #ccc;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background: #42b983;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-</style>
+<style scoped></style>
