@@ -10,8 +10,10 @@
                 <label class="font-bold mb-1">{{ $t('password') }}:</label>
                 <input class="w-full p-2 m-[5px_0px_0px_0px] border border-gray-300" type="password" v-model="password" required />
             </div>
-            <h-captcha class="w-full mt-3 flex justify-left scale-[0.8] origin-left" ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => captchaResp = token" @expired="captchaResp = null" />
-            <button class="w-full p-2.5 bg-[#42b983] text-white border-none cursor-pointer" type="submit" :disabled="!captchaResp">{{ $t('login') }}</button>
+            <div class="flex">
+                <h-captcha class="scale-[0.8] origin-right ml-auto" ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => captchaResp = token" @expired="captchaResp = null" />
+            </div>
+            <button class="w-full p-2.5 bg-[#42b983] m-[8px_0px_0px_0px] text-white border-none cursor-pointer" type="submit" :disabled="!captchaResp">{{ $t('login') }}</button>
         </form>
     </div>
 </template>

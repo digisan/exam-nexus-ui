@@ -38,7 +38,7 @@ import HelloWorld from './components/HelloWorld.vue'
     <LangSwitcher></LangSwitcher>
 
     <div class="flex flex-col items-center justify-center min-h-screen">
-        <nav class="max-w-[400px] w-full flex flex-row-reverse mr-2 text-gray-500 bg-blue-10">
+        <nav class="max-w-[400px] w-full flex flex-row-reverse mr-2 text-blue-600 bg-blue-10 m-[0px_0px_5px_0px]">
             <router-link v-if="showLinkIn" to="/login">{{ $t('login') }}</router-link>
             <router-link v-if="showLinkReg" to="/register">{{ $t('register') }}</router-link>
         </nav>
