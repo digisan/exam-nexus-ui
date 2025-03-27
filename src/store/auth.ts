@@ -54,9 +54,11 @@ export const useAuthStore = defineStore('auth', {
                 },
             });
             if (resp.ok) {
-                return await resp.json();
+                this.user = null
+                this.token = null
+                return true
             }
-            return { "message": `internal error: @access ${API_LOGOUT}` }
+            return false
         }
     },
 });

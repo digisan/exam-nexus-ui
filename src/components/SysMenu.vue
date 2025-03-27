@@ -2,7 +2,11 @@
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import barsIcon from "../assets/bars-2.5.svg";
 import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '../store/auth';
 
+const router = useRouter();
+const authStore = useAuthStore();
 const { locale } = useI18n();
 
 // 控制菜单的显示状态
@@ -25,7 +29,6 @@ onUnmounted(() => {
     document.removeEventListener("click", handleClickOutside);
 });
 
-// 计算显示的文本
 const primaryText = computed(() => (locale.value === 'zh' ? '中文' : 'English'));
 const secondaryText = computed(() => (locale.value === 'zh' ? 'English' : '中文'));
 
@@ -33,6 +36,13 @@ const switchLanguage = () => {
     locale.value = locale.value === 'zh' ? 'en' : 'zh';
     localStorage.setItem('lang', locale.value);
 };
+
+const logout = async () => {
+    const flag = await authStore.logout()
+    if (flag) {
+        await router.push('/login');
+    }
+}
 
 </script>
 
@@ -43,7 +53,9 @@ const switchLanguage = () => {
                 <img :src="barsIcon" alt="menu" class="w-8 h-8">
             </button>
             <div v-show="isOpen" class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2">
-                <a href="#" class="block px-4 py-2 text-center text-gray-700 hover:bg-gray-100" @click.prevent="switchLanguage"><span class="text-[16px] font-bold">{{ primaryText }}</span> / <span class="text-[12px] hover:underline text-gray-400">{{ secondaryText }}</span></a>
+                <a v-if="authStore.user" href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-left">{{ authStore.user }}</a>
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-left" @click.prevent="switchLanguage"><span class="text-[16px] font-bold">{{ primaryText }}</span> / <span class="text-[12px] hover:underline text-gray-400">{{ secondaryText }}</span></a>
+                <a v-if="authStore.user" href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-left" @click.prevent="logout">{{ $t('logout') }}</a>
             </div>
         </div>
     </div>

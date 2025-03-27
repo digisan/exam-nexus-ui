@@ -58,7 +58,7 @@ const submitLogin = async () => {
     })
 
     if (result.token) {
-        alert(`以${user.value}身份登录成功`);
+        // alert(`以${user.value}身份登录成功`);
         await router.push('/dashboard');
     } else {
         alert('登录失败: ' + result.message);
