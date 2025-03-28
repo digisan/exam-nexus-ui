@@ -33,36 +33,11 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <!-- --------------------------------------------------------------------------- -->
 
+<!-- src/App.vue -->
 <template>
-
-    <SysMenu></SysMenu>
-
-    <div class="flex flex-col items-center justify-center min-h-screen">
-        <nav class="max-w-[400px] w-full flex flex-row-reverse mr-2 text-blue-600 bg-blue-10 m-[0px_0px_5px_0px]">
-            <router-link v-if="showLinkIn" to="/login">{{ $t('login') }}</router-link>
-            <router-link v-if="showLinkReg" to="/register">{{ $t('register') }}</router-link>
-        </nav>
-        <router-view></router-view>
-    </div>
-
-    <!-- <nav class="fixed top-0 right-0 mt-4 mr-4">
-        <router-link v-if="showLinkOut" to="/">{{ $t('logout') }}</router-link>
-    </nav> -->
-
+    <Layout />
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useUIStore } from './store/ui';
-import { storeToRefs } from 'pinia';
-import { useI18n } from 'vue-i18n';
-import SysMenu from './components/SysMenu.vue';
-
-const { locale, t } = useI18n();
-
-const uiStore = useUIStore();
-const { showLinkReg, showLinkIn, showLinkOut } = storeToRefs(uiStore);
-
+import Layout from "./layouts/Layout.vue";
 </script>
-
-<style scoped></style>

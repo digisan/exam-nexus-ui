@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import barsIcon from "../assets/bars-2.5.svg";
+import langIcon from "../assets/user-circle.svg";
+import logoutIcon from "../assets/logout.svg";
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../store/auth';
@@ -54,8 +56,9 @@ const logout = async () => {
             </button>
             <div v-show="isOpen" class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2">
                 <a v-if="authStore.user" href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-left">{{ authStore.user }}</a>
-                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-left" @click.prevent="switchLanguage"><span class="text-[16px] font-bold">{{ primaryText }}</span> / <span class="text-[12px] hover:underline text-gray-400">{{ secondaryText }}</span></a>
-                <a v-if="authStore.user" href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-left" @click.prevent="logout">{{ $t('logout') }}</a>
+                <div v-if="authStore.user" class="border-t border-gray-200 my-2"></div>
+                <a href="#" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" @click.prevent="switchLanguage"> <img :src="langIcon" alt="" class="w-5 h-5" /><span class="text-[16px] font-bold">{{ primaryText }}</span> / <span class="text-[12px] hover:underline text-gray-400">{{ secondaryText }}</span></a>
+                <a v-if="authStore.user" href="#" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" @click.prevent="logout"> <img :src="logoutIcon" alt="" class="w-5 h-5" />{{ $t('logout') }}</a>
             </div>
         </div>
     </div>
