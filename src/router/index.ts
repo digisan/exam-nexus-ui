@@ -1,17 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from '../views/Login.vue';
-import Register from '../views/Register.vue';
-import Dashboard from '../views/Dashboard.vue';
+import { useAuthStore } from '../store/auth';
 
 const routes = [
-    { path: '/', component: Login },
-    { path: '/login', component: Login },
-    { path: '/register', component: Register },
+    { path: '/', name: 'Home', component: () => import('../views/Login.vue') },
+    { path: '/login', name: 'Login', component: () => import('../views/Login.vue') },
+    { path: '/register', name: 'Register', component: () => import('../views/Register.vue') },
     {
         path: '/dashboard',
         name: 'Dashboard',
-        component: Dashboard,
-        // meta: { requiresAuth: true },  // 需要身份验证
+        component: () => import('../views/Dashboard.vue'),
+        meta: { requiresAuth: true },  // 需要身份验证
     },
 ];
 
@@ -20,25 +18,15 @@ const router = createRouter({
     routes,
 });
 
-// 设置全局导航守卫
+// 全局路由守卫
 router.beforeEach((to, from, next) => {
-    // 判断目标路由是否需要身份验证
     if (to.meta.requiresAuth) {
-        // 检查 token（你可以根据实际情况从 localStorage、Vuex 或 cookies 中获取）
-        const token = localStorage.getItem('token'); // 这里示例从 localStorage 获取 token
-        if (!token) {
-            // 如果没有 token，跳转到登录页面
-            next({ name: 'Login' });
-        } else {
-            // 如果有 token，继续执行路由
-            next();
-        }
+        const authStore = useAuthStore();
+        const isAuthenticated = authStore.user && authStore.token && authStore.isTokenValid(); // 检查 token 是否存在且有效
+        !isAuthenticated ? next({ name: 'Login' }) : next();
     } else {
-        // 如果不需要验证，直接跳转
         next();
     }
 });
 
 export default router;
-
-

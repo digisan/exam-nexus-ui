@@ -19,11 +19,16 @@ const { user, token } = storeToRefs(authStore)
 
 const uiStore = useUIStore()
 
-onMounted(() => {
+onMounted(async () => {
+    const isValid = await authStore.isTokenValid();
+    if (!isValid) {
+        router.push({ name: 'Login' });
+        return
+    }
+    
     uiStore.styleDashboard();
 });
 
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

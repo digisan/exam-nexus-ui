@@ -4,6 +4,7 @@ const PREFIX = 'http://localhost:8001'
 const API_LOGIN = `${PREFIX}/api/auth/login`
 const API_REGISTER = `${PREFIX}/api/auth/register`
 const API_LOGOUT = `${PREFIX}/api/auth/logout`
+const API_VALIDATE_TOKEN = `${PREFIX}/api/auth/validate-token`
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -59,6 +60,19 @@ export const useAuthStore = defineStore('auth', {
                 return true
             }
             return false
+        },
+
+        async isTokenValid() {
+            if (!this.token) return { "message": `@access ${API_VALIDATE_TOKEN} need a token` };
+            const resp = await fetch(API_VALIDATE_TOKEN, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.token}`
+                },
+            });
+            return resp.ok
         }
     },
 });
