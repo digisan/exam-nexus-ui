@@ -1,14 +1,42 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthStore } from '../store/auth';
+import Login from '../views/Login.vue';
+import Register from '../views/Register.vue';
+import Dashboard from '../views/Dashboard.vue';
+import SysMenu from '../components/SysMenu.vue';
 
 const routes = [
-    { path: '/', name: 'Home', component: () => import('../views/Login.vue') },
-    { path: '/login', name: 'Login', component: () => import('../views/Login.vue') },
-    { path: '/register', name: 'Register', component: () => import('../views/Register.vue') },
+    {
+        path: '/',
+        name: 'Home',
+        components: {
+            default: Login,
+            rt_menu: SysMenu,
+        }
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        components: {
+            default: Login,
+            rt_menu: SysMenu,
+        }
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        components: {
+            default: Register,
+            rt_menu: SysMenu,
+        }
+    },
     {
         path: '/dashboard',
         name: 'Dashboard',
-        component: () => import('../views/Dashboard.vue'),
+        components: {
+            default: Dashboard,
+            rt_menu: SysMenu, // () => import('../components/SysMenu.vue'),
+        },
         meta: { requiresAuth: true },  // 需要身份验证
     },
 ];

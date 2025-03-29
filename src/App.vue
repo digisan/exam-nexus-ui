@@ -33,7 +33,6 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <!-- --------------------------------------------------------------------------- -->
 
-<!-- src/App.vue -->
 <template>
     <Layout />
 </template>

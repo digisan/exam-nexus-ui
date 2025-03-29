@@ -54,7 +54,7 @@ const logout = async () => {
             <button @click="isOpen = !isOpen" class="p-2 rounded-full bg-white shadow-lg hover:bg-gray-200 cursor-pointer">
                 <img :src="barsIcon" alt="menu" class="w-8 h-8">
             </button>
-            <div v-show="isOpen" class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2">
+            <div v-show="isOpen" class="absolute right-0 mt-2 w-58 bg-white shadow-lg rounded-lg p-2">
                 <a v-if="authStore.user" href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-left">{{ authStore.user }}</a>
                 <div v-if="authStore.user" class="border-t border-gray-200 my-2"></div>
                 <a href="#" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" @click.prevent="switchLanguage"> <img :src="langIcon" alt="" class="w-5 h-5" /><span class="text-[16px] font-bold">{{ primaryText }}</span> / <span class="text-[12px] hover:underline text-gray-400">{{ secondaryText }}</span></a>

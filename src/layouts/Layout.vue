@@ -17,7 +17,7 @@
 
 <template>
 
-    <SysMenu></SysMenu>
+    <router-view name="rt_menu" />
 
     <div class="flex flex-col items-center justify-center min-h-screen">
         <nav class="max-w-[400px] w-full flex flex-row-reverse mr-2 text-blue-600 bg-blue-10 m-[0px_0px_5px_0px]">
@@ -34,7 +34,6 @@ import { ref } from 'vue';
 import { useUIStore } from '../store/ui';
 import { storeToRefs } from 'pinia';
 import { useI18n } from 'vue-i18n';
-import SysMenu from '../components/SysMenu.vue';
 
 const { locale, t } = useI18n();
 
