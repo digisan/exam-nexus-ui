@@ -1,7 +1,7 @@
 <template>
-    <h2>
-        Dashboard
-    </h2>
+    <div class="flex items-center justify-center h-screen w-screen">
+        <h2 class="text-2xl font-bold">Centered Heading</h2>
+    </div>
 </template>
 
 <script setup>
@@ -13,10 +13,8 @@ import { useUIStore } from '../store/ui';
 import { storeToRefs } from 'pinia';
 
 const router = useRouter()
-
 const authStore = useAuthStore()
 const { user, token } = storeToRefs(authStore)
-
 const uiStore = useUIStore()
 
 onMounted(async () => {
@@ -25,7 +23,6 @@ onMounted(async () => {
         router.push({ name: 'Login' });
         return
     }
-    
     uiStore.styleDashboard();
 });
 

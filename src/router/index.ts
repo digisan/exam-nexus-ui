@@ -4,14 +4,22 @@ import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import Dashboard from '../views/Dashboard.vue';
 import SysMenu from '../components/SysMenu.vue';
+import UserMenu from '../components/SideBar.vue';
 
 const routes = [
+    // 默认重定向到 login 页面，当路径无法匹配时
+    {
+        path: '/:catchAll(.*)', // 捕获所有未匹配的路径
+        name: 'unknown',
+        redirect: '/login' // 重定向到 login
+    },
     {
         path: '/',
         name: 'Home',
         components: {
             default: Login,
             rt_menu: SysMenu,
+            sd_menu: UserMenu,
         }
     },
     {
@@ -20,6 +28,7 @@ const routes = [
         components: {
             default: Login,
             rt_menu: SysMenu,
+            sd_menu: UserMenu,
         }
     },
     {
@@ -28,6 +37,7 @@ const routes = [
         components: {
             default: Register,
             rt_menu: SysMenu,
+            sd_menu: UserMenu,
         }
     },
     {
@@ -36,6 +46,7 @@ const routes = [
         components: {
             default: Dashboard,
             rt_menu: SysMenu, // () => import('../components/SysMenu.vue'),
+            sd_menu: UserMenu,
         },
         meta: { requiresAuth: true },  // 需要身份验证
     },
