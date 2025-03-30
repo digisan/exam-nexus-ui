@@ -25,8 +25,8 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import HCaptcha from '@hcaptcha/vue3-hcaptcha';
-import { useAuthStore } from '../store/auth';
-import { useUIStore } from '../store/ui';
+import { useAuthStore } from '../../store/auth';
+import { useUIStore } from '../../store/ui';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 

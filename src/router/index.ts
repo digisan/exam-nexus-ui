@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthStore } from '../store/auth';
-import Login from '../views/Login.vue';
-import Register from '../views/Register.vue';
-import Dashboard from '../views/Dashboard.vue';
+import Login from '../views/auth/Login.vue';
+import Register from '../views/auth/Register.vue';
 import SysMenu from '../components/SysMenu.vue';
 import UserMenu from '../components/SideBar.vue';
 
@@ -44,8 +43,38 @@ const routes = [
         path: '/dashboard',
         name: 'Dashboard',
         components: {
-            default: Dashboard,
-            rt_menu: SysMenu, // () => import('../components/SysMenu.vue'),
+            default: () => import('../views/Dashboard.vue'),
+            rt_menu: SysMenu,
+            sd_menu: UserMenu,
+        },
+        meta: { requiresAuth: true },  // 需要身份验证
+    },
+    {
+        path: '/subjects',
+        name: 'Subjects',
+        components: {
+            default: () => import('../views/Subjects.vue'),
+            rt_menu: SysMenu,
+            sd_menu: UserMenu,
+        },
+        meta: { requiresAuth: true },  // 需要身份验证
+    },
+    {
+        path: '/plan',
+        name: 'Plan',
+        components: {
+            default: () => import('../views/Plan.vue'),
+            rt_menu: SysMenu,
+            sd_menu: UserMenu,
+        },
+        meta: { requiresAuth: true },  // 需要身份验证
+    },
+    {
+        path: '/mind-sharing',
+        name: 'MindSharing',
+        components: {
+            default: () => import('../views/MindSharing.vue'),
+            rt_menu: SysMenu,
             sd_menu: UserMenu,
         },
         meta: { requiresAuth: true },  // 需要身份验证
