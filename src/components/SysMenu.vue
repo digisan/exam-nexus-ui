@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import barsIcon from "../assets/bars-2.5.svg";
-import langIcon from "../assets/user-circle.svg";
+import langIcon from "../assets/lang-switch.svg";
 import logoutIcon from "../assets/logout.svg";
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
