@@ -3,9 +3,12 @@
     "welcome": "欢迎来到ExamNexus",
     "switchLang": "切换到英文",
     "login": "登录",
+    "login-prompt": "返回",
     "email": "邮箱",
     "password": "密码",
     "confirm-password": "确认密码",
     "register": "注册",
+    "register-prompt-1": "还未注册？",
+    "register-prompt-2": "",
     "logout": "退出"
 }

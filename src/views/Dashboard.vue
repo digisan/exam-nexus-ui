@@ -23,7 +23,6 @@ onMounted(async () => {
         router.push({ name: 'Login' });
         return
     }
-    uiStore.styleDashboard();
 });
 
 </script>

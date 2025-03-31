@@ -2,10 +2,13 @@
     "hello": "Hello",
     "welcome": "Welcome to ExamNexus",
     "switchLang": "Switch to Chinese",
-    "login": "Sign In",
+    "login": "sign in",
+    "login-prompt": "Back to",
     "email": "Email",
     "password": "Password",
     "confirm-password": "Confirm Password",
-    "register": "Sign Up",
+    "register": "Sign up",
+    "register-prompt-1": "Not registered?",
+    "register-prompt-2": "here",
     "logout": "Sign Out"
 }

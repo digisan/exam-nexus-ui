@@ -20,10 +20,6 @@
     <router-view name="rt_menu" />
 
     <div v-if="!authStore.user" class="flex flex-col items-center justify-center min-h-screen">
-        <nav class="max-w-[400px] w-full flex flex-row-reverse mr-2 text-blue-600 bg-blue-10 m-[0px_0px_5px_0px]">
-            <router-link v-if="showLinkIn" to="/login">{{ $t('login') }}</router-link>
-            <router-link v-if="showLinkReg" to="/register">{{ $t('register') }}</router-link>
-        </nav>
         <router-view />
     </div>
 
@@ -44,7 +40,6 @@ import { useI18n } from 'vue-i18n';
 const { locale, t } = useI18n();
 const authStore = useAuthStore();
 const uiStore = useUIStore();
-const { showLinkReg, showLinkIn } = storeToRefs(uiStore);
 
 </script>
 

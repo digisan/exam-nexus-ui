@@ -15,6 +15,11 @@
             </div>
             <button class="w-full p-2.5 bg-[#42b983] m-[8px_0px_0px_0px] text-white border-none cursor-pointer" type="submit" :disabled="!captchaResp">{{ $t('login') }}</button>
         </form>
+        <p class="text-right mt-[5px]">
+            {{ $t('register-prompt-1') }}
+            <router-link to="/register" class="text-blue-600">{{ $t('register') }}</router-link>
+            {{ $t('register-prompt-2') }}
+        </p>
     </div>
 </template>
 
@@ -41,7 +46,6 @@ const captchaResp = ref(null);
 const captcha = ref(null);
 
 onMounted(() => {
-    uiStore.styleLogin();
 });
 
 const submitLogin = async () => {
@@ -58,7 +62,6 @@ const submitLogin = async () => {
     })
 
     if (result.token) {
-        // alert(`以${user.value}身份登录成功`);
         await router.push('/dashboard');
     } else {
         alert('登录失败: ' + result.message);
