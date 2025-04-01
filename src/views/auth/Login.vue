@@ -30,9 +30,6 @@ import { useAuthStore } from '../../store/auth';
 import { useUIStore } from '../../store/ui';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
-import { useI18n } from 'vue-i18n';
-
-const { locale, t } = useI18n();
 
 const router = useRouter()
 

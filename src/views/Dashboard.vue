@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center justify-center h-screen w-screen">
-        <h2 class="text-2xl font-bold">DashBoard</h2>
+        <h2 class="text-2xl font-bold">{{ $t('dashboard') }}</h2>
     </div>
 </template>
 
@@ -8,9 +8,9 @@
 
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
+import { storeToRefs } from 'pinia';
 import { useAuthStore } from '../store/auth';
 import { useUIStore } from '../store/ui';
-import { storeToRefs } from 'pinia';
 
 const router = useRouter()
 const authStore = useAuthStore()

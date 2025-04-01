@@ -35,9 +35,7 @@ import { ref } from 'vue';
 import { useUIStore } from '../store/ui';
 import { useAuthStore } from '../store/auth';
 import { storeToRefs } from 'pinia';
-import { useI18n } from 'vue-i18n';
 
-const { locale, t } = useI18n();
 const authStore = useAuthStore();
 const uiStore = useUIStore();
 

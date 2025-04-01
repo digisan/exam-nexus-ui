@@ -2,7 +2,7 @@
     "hello": "Hello",
     "welcome": "Welcome to ExamNexus",
     "switchLang": "Switch to Chinese",
-    "login": "sign in",
+    "login": "Sign in",
     "login-prompt": "Back to",
     "email": "Email",
     "password": "Password",
@@ -10,5 +10,9 @@
     "register": "Sign up",
     "register-prompt-1": "Not registered?",
     "register-prompt-2": "here",
-    "logout": "Sign Out"
+    "logout": "Sign Out",
+    "dashboard": "Dashboard",
+    "subjects": "Subjects",
+    "plan": "Plan",
+    "mind-sharing": "Mind Sharing"
 }

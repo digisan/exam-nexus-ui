@@ -10,5 +10,9 @@
     "register": "注册",
     "register-prompt-1": "还未注册？",
     "register-prompt-2": "",
-    "logout": "退出"
+    "logout": "退出",
+    "dashboard": "备考板",
+    "subjects": "考试科目",
+    "plan": "备考计划",
+    "mind-sharing": "求助与分享"
 }

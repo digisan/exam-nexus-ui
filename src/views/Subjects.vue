@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center justify-center h-screen w-screen">
-        <h2 class="text-2xl font-bold">Subjects</h2>
+        <h2 class="text-2xl font-bold">{{ $t('subjects') }}</h2>
     </div>
 </template>
 
