@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-const PREFIX = 'http://localhost:8001'
+const PREFIX = `https://exam-nexus.deno.dev`
 const API_LOGIN = `${PREFIX}/api/auth/login`
 const API_REGISTER = `${PREFIX}/api/auth/register`
 const API_LOGOUT = `${PREFIX}/api/auth/logout`

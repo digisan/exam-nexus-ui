@@ -33,7 +33,7 @@ onUnmounted(() => {
 });
 
 const primaryText = computed(() => (locale.value === 'zh' ? '中文' : 'English'));
-const secondaryText = computed(() => (locale.value === 'zh' ? 'English' : '中文'));
+const secondaryText = computed(() => (locale.value === 'zh' ? 'En' : '中文'));
 
 const switchLanguage = () => {
     locale.value = locale.value === 'zh' ? 'en' : 'zh';

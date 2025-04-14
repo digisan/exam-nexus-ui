@@ -17,8 +17,8 @@ const routes = [
         name: 'Home',
         components: {
             default: Login,
-            rt_menu: SysMenu,
-            sd_menu: UserMenu,
+            righttop_menu: SysMenu,
+            side_menu: UserMenu,
         }
     },
     {
@@ -26,8 +26,8 @@ const routes = [
         name: 'Login',
         components: {
             default: Login,
-            rt_menu: SysMenu,
-            sd_menu: UserMenu,
+            righttop_menu: SysMenu,
+            side_menu: UserMenu,
         }
     },
     {
@@ -35,8 +35,8 @@ const routes = [
         name: 'Register',
         components: {
             default: Register,
-            rt_menu: SysMenu,
-            sd_menu: UserMenu,
+            righttop_menu: SysMenu,
+            side_menu: UserMenu,
         }
     },
     {
@@ -44,8 +44,8 @@ const routes = [
         name: 'Dashboard',
         components: {
             default: () => import('../views/Dashboard.vue'),
-            rt_menu: SysMenu,
-            sd_menu: UserMenu,
+            righttop_menu: SysMenu,
+            side_menu: UserMenu,
         },
         meta: { requiresAuth: true },  // 需要身份验证
     },
@@ -54,8 +54,8 @@ const routes = [
         name: 'Subjects',
         components: {
             default: () => import('../views/Subjects.vue'),
-            rt_menu: SysMenu,
-            sd_menu: UserMenu,
+            righttop_menu: SysMenu,
+            side_menu: UserMenu,
         },
         meta: { requiresAuth: true },  // 需要身份验证
     },
@@ -64,8 +64,8 @@ const routes = [
         name: 'Plan',
         components: {
             default: () => import('../views/Plan.vue'),
-            rt_menu: SysMenu,
-            sd_menu: UserMenu,
+            righttop_menu: SysMenu,
+            side_menu: UserMenu,
         },
         meta: { requiresAuth: true },  // 需要身份验证
     },
@@ -74,8 +74,8 @@ const routes = [
         name: 'MindSharing',
         components: {
             default: () => import('../views/MindSharing.vue'),
-            rt_menu: SysMenu,
-            sd_menu: UserMenu,
+            righttop_menu: SysMenu,
+            side_menu: UserMenu,
         },
         meta: { requiresAuth: true },  // 需要身份验证
     },

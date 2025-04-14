@@ -17,15 +17,15 @@
 
 <template>
 
-    <router-view name="rt_menu" />
+    <router-view name="righttop_menu" />
 
     <div v-if="!authStore.user" class="flex flex-col items-center justify-center min-h-screen">
         <router-view />
     </div>
 
     <div v-if="authStore.user" class="flex h-screen">
-        <router-view name="sd_menu" />
-        <router-view />
+        <router-view name="side_menu" />
+        <!-- <router-view /> -->
     </div>
 
 </template>
