@@ -3,6 +3,7 @@ import { useAuthStore } from '../store/auth';
 import Login from '../views/auth/Login.vue';
 import Register from '../views/auth/Register.vue';
 import SysMenu from '../components/SysMenu.vue';
+import LangMenu from '../components/LangMenu.vue';
 import UserMenu from '../components/SideBar.vue';
 
 const routes = [
@@ -17,7 +18,7 @@ const routes = [
         name: 'Home',
         components: {
             default: Login,
-            righttop_menu: SysMenu,
+            righttop_menu: LangMenu,
             side_menu: UserMenu,
         }
     },
@@ -26,7 +27,7 @@ const routes = [
         name: 'Login',
         components: {
             default: Login,
-            righttop_menu: SysMenu,
+            righttop_menu: LangMenu,
             side_menu: UserMenu,
         }
     },
@@ -35,7 +36,7 @@ const routes = [
         name: 'Register',
         components: {
             default: Register,
-            righttop_menu: SysMenu,
+            righttop_menu: LangMenu,
             side_menu: UserMenu,
         }
     },
