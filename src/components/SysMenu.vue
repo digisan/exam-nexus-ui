@@ -7,6 +7,7 @@ import logoutIcon from "../assets/logout.svg";
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../store/auth';
 import { useI18n } from 'vue-i18n';
+import { useRegionModal } from "./useRegionModal";
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -25,12 +26,8 @@ const handleClickOutside = (event) => {
 };
 
 // 挂载和卸载全局点击监听器
-onMounted(() => {
-    document.addEventListener("click", handleClickOutside);
-});
-onUnmounted(() => {
-    document.removeEventListener("click", handleClickOutside);
-});
+onMounted(() => { document.addEventListener("click", handleClickOutside); });
+onUnmounted(() => { document.removeEventListener("click", handleClickOutside); });
 
 const primaryText = computed(() => (locale.value === 'zh' ? '中文' : 'English'));
 const secondaryText = computed(() => (locale.value === 'zh' ? 'En' : '中文'));
@@ -40,9 +37,24 @@ const switchLanguage = () => {
     localStorage.setItem('lang', locale.value);
 };
 
-const switchRegion = () => {
 
-}
+const openRegionModal = useRegionModal();
+const countries = [
+    { code: 'cn', name: 'China' },
+    { code: 'au', name: 'Australia' },
+    // { code: 'us', name: 'United States' },
+    // { code: 'jp', name: 'Japan' },
+];
+
+const switchRegion = async () => {
+    const result = await openRegionModal(countries);
+    if (result) {
+        console.log('用户选择了地区:', result);
+        // 处理地区切换逻辑
+    } else {
+        console.log('用户取消了选择');
+    }
+};
 
 const logout = async () => {
     const flag = await authStore.logout()

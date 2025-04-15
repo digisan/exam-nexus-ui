@@ -14,5 +14,9 @@
     "dashboard": "Dashboard",
     "subjects": "Subjects",
     "plan": "Plan",
-    "mind-sharing": "Mind Sharing"
+    "mind-sharing": "Mind Sharing",
+    "au": "Australia",
+    "cn": "China",
+    "us": "United States",
+    "jp": "Japan"
 }
