@@ -7,7 +7,7 @@ import logoutIcon from "../assets/logout.svg";
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../store/auth';
 import { useI18n } from 'vue-i18n';
-import { useRegionModal } from "./useRegionModal";
+import { useRegionModal } from "./modal/useRegionModal";
 
 const router = useRouter();
 const authStore = useAuthStore();

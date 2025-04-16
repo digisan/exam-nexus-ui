@@ -44,8 +44,7 @@ const confirmPassword = ref("");
 const captchaResp = ref(null);
 const captcha = ref(null);
 
-onMounted(() => {
-});
+onMounted(() => { });
 
 const submitRegister = async () => {
 

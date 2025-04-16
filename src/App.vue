@@ -35,8 +35,10 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
     <Layout />
+    <GlobalLoading />
 </template>
 
 <script setup>
 import Layout from "./layouts/Layout.vue";
+import GlobalLoading from './components/GlobalLoading.vue';
 </script>

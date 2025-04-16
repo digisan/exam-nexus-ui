@@ -30,6 +30,9 @@ import { useAuthStore } from '../../store/auth';
 import { useUIStore } from '../../store/ui';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import { useLoadingStore } from '../../store/loading';
+
+const loading = useLoadingStore();
 
 const router = useRouter()
 
@@ -42,31 +45,37 @@ const password = ref('');
 const captchaResp = ref(null);
 const captcha = ref(null);
 
-onMounted(() => {
-});
+onMounted(() => { });
 
 const submitLogin = async () => {
-
     if (!captchaResp.value) {
         alert('请完成验证码验证');
         return;
     }
 
-    const result = await authStore.login({
-        email: email.value,
-        password: password.value,
-        captchaToken: captchaResp.value,
-    })
+    loading.showLoading('正在登录...');
 
-    if (result.token) {
-        await router.push('/dashboard');
-    } else {
-        alert('登录失败: ' + result.message);
+    try {
+        const result = await authStore.login({
+            email: email.value,
+            password: password.value,
+            captchaToken: captchaResp.value,
+        });
+
+        if (result.token) {
+            loading.showLoading('登录成功，正在跳转...');
+            await router.push('/dashboard');
+        } else {
+            alert('登录失败: ' + result.message);
+        }
+
+    } catch (err) {
+        alert('发生错误: ' + err.message);
+    } finally {
+        loading.hideLoading();
     }
-
-    // 重新验证 hCaptcha
-    // captcha.value.resetCaptcha();
 };
+
 </script>
 
 <style scoped></style>

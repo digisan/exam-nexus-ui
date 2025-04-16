@@ -23,14 +23,14 @@ export function useRegionModal() {
                 container.remove();
             };
 
-            const vnode = h(RegionModal, {
-                show: true,
-                countries,
-                onConfirm,
-                onCancel,
-            });
-
-            render(vnode, container);
+            render(
+                h(RegionModal, {
+                    show: true,
+                    countries,
+                    onConfirm,
+                    onCancel,
+                }),
+                container);
         });
     };
 }
