@@ -30,11 +30,16 @@ const confirm = () => {
 const cancel = () => {
     emit('cancel');
 };
+
+const onClick = (event) => {
+    event.stopPropagation();
+}
+
 </script>
 
 <template>
     <transition name="fade">
-        <div v-if="show" class="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm flex items-center justify-center">
+        <div v-if="show" class="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm flex items-center justify-center" @click="onClick">
             <div class="bg-white rounded-xl shadow-2xl p-6 w-[90%] max-w-md z-50 animate-fadeIn">
                 <h2 class="text-xl font-semibold mb-4 text-gray-800">
                     {{ ('selectRegion') }}
