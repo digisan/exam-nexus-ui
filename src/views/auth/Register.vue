@@ -30,16 +30,14 @@
 import { onMounted, ref } from 'vue';
 import HCaptcha from '@hcaptcha/vue3-hcaptcha';
 import { useAuthStore } from '../../store/auth';
-import { useUIStore } from '../../store/ui';
 import { useRouter } from 'vue-router';
 import { useLoadingStore } from '../../store/loading';
 
-const loading = useLoadingStore();
+const loading = useLoadingStore()
 
 const router = useRouter()
 
 const authStore = useAuthStore()
-const uiStore = useUIStore()
 
 const email = ref('');
 const password = ref('');

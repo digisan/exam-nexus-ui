@@ -32,12 +32,10 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useUIStore } from '../store/ui';
 import { useAuthStore } from '../store/auth';
 import { storeToRefs } from 'pinia';
 
 const authStore = useAuthStore();
-const uiStore = useUIStore();
 
 </script>
 
