@@ -4,9 +4,9 @@ import { ref } from 'vue';
 export const useLoadingStore = defineStore('loading', () => {
 
     const isLoading = ref(false);
-    const message = ref('加载中...');
+    const message = ref('loading');
 
-    const showLoading = (msg = '加载中...') => {
+    const showLoading = (msg = 'loading') => {
         message.value = msg;
         isLoading.value = true;
     }

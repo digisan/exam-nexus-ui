@@ -38,7 +38,7 @@ import HelloWorld from './components/HelloWorld.vue'
     <GlobalLoading />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Layout from "./layouts/Layout.vue";
 import GlobalLoading from './components/GlobalLoading.vue';
 </script>

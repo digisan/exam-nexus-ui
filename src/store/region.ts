@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
-// import { ref } from 'vue';
+import { ref } from 'vue';
 
 export const useRegionStore = defineStore('region', () => {
 
-    // const country = ref('au');
+    const country = ref('au');
 
     // const showLoading = (msg = '加载中...') => {
     //     message.value = msg;

@@ -26,7 +26,8 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
 import { onMounted, ref } from 'vue';
 import HCaptcha from '@hcaptcha/vue3-hcaptcha';
 import { useAuthStore } from '../../store/auth';
@@ -59,7 +60,7 @@ const submitRegister = async () => {
         return;
     }
 
-    loading.showLoading('正在注册...');
+    loading.showLoading('registering');
 
     try {
         const result = await authStore.register({
@@ -69,10 +70,10 @@ const submitRegister = async () => {
         })
 
         if (result.success) {
-            loading.showLoading('注册成功');
+            loading.showLoading('registering-ok');
             await router.push('/login');
         } else {
-            alert(`注册失败: ${result.message}`);
+            alert(`registering-fail: ${result.message}`);
         }
 
     } catch (err) {

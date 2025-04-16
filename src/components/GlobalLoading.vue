@@ -2,7 +2,7 @@
     <transition name="fade">
         <div v-if="loadingStore.isLoading" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
             <div class="text-white text-lg animate-pulse">
-                {{ loadingStore.message }}
+                {{ $t(loadingStore.message) }}
             </div>
         </div>
     </transition>

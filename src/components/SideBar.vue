@@ -30,7 +30,8 @@
     </aside>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import planIcon from "../assets/plan.svg";
@@ -40,13 +41,12 @@ import mindSharingIcon from "../assets/mind-sharing.svg";
 
 const route = useRoute();
 const isCollapsed = ref(false);
-
 const menuItems = ref([
     { label: 'dashboard', path: '/dashboard', img: dashboardIcon },
     { label: 'subjects', path: '/subjects', img: subjectsIcon },
     { label: 'plan', path: '/plan', img: planIcon },
     { label: 'mind-sharing', path: '/mind-sharing', img: mindSharingIcon }
 ]);
-
 const isActive = (path) => route.path === path;
+
 </script>

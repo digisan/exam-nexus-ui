@@ -23,7 +23,8 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
 import { onMounted, ref } from 'vue';
 import HCaptcha from '@hcaptcha/vue3-hcaptcha';
 import { useAuthStore } from '../../store/auth';
@@ -52,7 +53,7 @@ const submitLogin = async () => {
         return;
     }
 
-    loading.showLoading('正在登录...');
+    loading.showLoading('loading');
 
     try {
         const result = await authStore.login({
@@ -62,10 +63,10 @@ const submitLogin = async () => {
         });
 
         if (result.token) {
-            loading.showLoading('登录成功，正在跳转...');
+            loading.showLoading('loading-ok');
             await router.push('/dashboard');
         } else {
-            alert('登录失败: ' + result.message);
+            alert('loading-fail' + result.message);
         }
 
     } catch (err) {

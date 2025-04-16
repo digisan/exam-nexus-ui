@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import barsIcon from "../assets/bars-2.5.svg";
 import langIcon from "../assets/lang-switch.svg";
