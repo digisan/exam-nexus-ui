@@ -32,6 +32,9 @@ import HCaptcha from '@hcaptcha/vue3-hcaptcha';
 import { useAuthStore } from '../../store/auth';
 import { useUIStore } from '../../store/ui';
 import { useRouter } from 'vue-router';
+import { useLoadingStore } from '../../store/loading';
+
+const loading = useLoadingStore();
 
 const router = useRouter()
 
@@ -58,20 +61,27 @@ const submitRegister = async () => {
         return;
     }
 
-    const result = await authStore.register({
-        email: email.value,
-        password: password.value,
-        captchaToken: captchaResp.value,
-    })
+    loading.showLoading('正在注册...');
 
-    if (result.success) {
-        await router.push('/login');
-    } else {
-        alert(`注册失败: ${result.message}`);
+    try {
+        const result = await authStore.register({
+            email: email.value,
+            password: password.value,
+            captchaToken: captchaResp.value,
+        })
+
+        if (result.success) {
+            loading.showLoading('注册成功');
+            await router.push('/login');
+        } else {
+            alert(`注册失败: ${result.message}`);
+        }
+
+    } catch (err) {
+        alert('发生错误: ' + err.message);
+    } finally {
+        loading.hideLoading();
     }
-
-    // 重新验证 hCaptcha
-    // captcha.value.resetCaptcha();
 };
 </script>
 

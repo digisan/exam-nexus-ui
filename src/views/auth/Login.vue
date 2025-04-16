@@ -48,6 +48,7 @@ const captcha = ref(null);
 onMounted(() => { });
 
 const submitLogin = async () => {
+
     if (!captchaResp.value) {
         alert('请完成验证码验证');
         return;
