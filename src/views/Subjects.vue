@@ -9,11 +9,11 @@
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import { useAuthStore } from '../store/auth';
-import { storeToRefs } from 'pinia';
+// import { storeToRefs } from 'pinia';
 
 const router = useRouter()
 const authStore = useAuthStore()
-const { user, token } = storeToRefs(authStore)
+// const { user, token } = storeToRefs(authStore)
 
 onMounted(async () => {
     const isValid = await authStore.isTokenValid();

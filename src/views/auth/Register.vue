@@ -15,7 +15,7 @@
                 <input class="w-full p-2 m-[5px_0px_0px_0px] border border-gray-300" type="password" v-model="confirmPassword" required />
             </div>
             <div class="flex">
-                <h-captcha class="scale-[0.8] origin-right ml-auto" ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token) => { captchaResp = token }" @expired="captchaResp = null" />
+                <h-captcha class="scale-[0.8] origin-right ml-auto" ref="captcha" sitekey="f758eabc-746c-4316-9932-6af2cd709e8e" @verify="(token: string) => { captchaResp = token }" @expired="captchaResp = null" />
             </div>
             <button class="w-full p-2.5 bg-[#42b983] m-[8px_0px_0px_0px] text-white border-none cursor-pointer" type="submit" :disabled="!captchaResp || password !== confirmPassword">{{ $t('register') }}</button>
         </form>
@@ -41,7 +41,7 @@ const authStore = useAuthStore()
 const email = ref('');
 const password = ref('');
 const confirmPassword = ref("");
-const captchaResp = ref(null);
+const captchaResp = ref<string | null>(null);
 const captcha = ref(null);
 
 onMounted(() => { });
@@ -74,8 +74,12 @@ const submitRegister = async () => {
             alert(`registering-fail: ${result.message}`);
         }
 
-    } catch (err) {
-        alert('发生错误: ' + err.message);
+    } catch (err: unknown) {
+        if (err instanceof Error) {
+            alert('发生错误: ' + err.message);
+        } else {
+            alert('发生未知错误');
+        }
     } finally {
         loading.hideLoading();
     }

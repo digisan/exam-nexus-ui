@@ -19,10 +19,10 @@ const { locale } = useI18n();
 const isOpen = ref(false);
 
 // 监听点击外部事件
-const menuRef = ref(null);
+const menuRef = ref<HTMLDivElement | null>(null);
 
-const handleClickOutside = (event) => {
-    if (menuRef.value && !menuRef.value.contains(event.target)) {
+const handleClickOutside = (event: MouseEvent) => {
+    if (menuRef.value && !menuRef.value.contains(event.target as Node)) {
         isOpen.value = false;
     }
 };

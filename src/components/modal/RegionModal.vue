@@ -10,7 +10,7 @@
                         <!-- 选定内容 -->
                         <span v-if="selected">
                             <span :class="`fi fi-${selected} w-6 h-4 inline mr-2`"></span>
-                            {{$t(countries.find((c) => c.code === selected)?.code)}}
+                            {{$t(countries.find((c) => c.code === selected)?.code ?? 'au')}}
                         </span>
                         <!-- 未选定状态 -->
                         <span v-else class="text-gray-400"> {{ $t('nd-country') }} </span>
@@ -73,7 +73,7 @@ const cancel = () => {
     emit('cancel');
 };
 
-const onClick = (event) => {
+const onClick = (event: MouseEvent) => {
     event.stopPropagation();
 }
 

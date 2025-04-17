@@ -47,6 +47,6 @@ const menuItems = ref([
     { label: 'plan', path: '/plan', img: planIcon },
     { label: 'mind-sharing', path: '/mind-sharing', img: mindSharingIcon }
 ]);
-const isActive = (path) => route.path === path;
+const isActive = (path: string) => route.path === path;
 
 </script>
