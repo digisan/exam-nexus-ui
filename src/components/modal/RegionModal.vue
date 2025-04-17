@@ -10,10 +10,10 @@
                         <!-- 选定内容 -->
                         <span v-if="selected">
                             <span :class="`fi fi-${selected} w-6 h-4 inline mr-2`"></span>
-                            {{countries.find((c) => c.code === selected)?.name}}
+                            {{$t(countries.find((c) => c.code === selected)?.code)}}
                         </span>
                         <!-- 未选定状态 -->
-                        <span v-else class="text-gray-400"> {{ ('pleaseSelect') }} </span>
+                        <span v-else class="text-gray-400"> {{ $t('nd-country') }} </span>
                         <!-- 下拉箭头 -->
                         <svg class="w-5 h-5 ml-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -24,7 +24,7 @@
                     <div v-if="showDropdown" class="absolute w-full mt-2 bg-white border border-gray-300 rounded-md shadow-lg z-10 max-h-64 overflow-y-auto" @click.stop>
                         <div v-for="country in countries" :key="country.code" @click="selected = country.code; showDropdown = false" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
                             <span :class="`fi fi-${country.code} w-6 h-4 inline mr-2`"></span>
-                            {{ country.name }}
+                            {{ $t(country.code) }}
                         </div>
                     </div>
                 </div>

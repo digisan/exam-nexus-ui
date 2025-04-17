@@ -1,6 +1,7 @@
 // composables/useRegionModal.ts
 import { h, render } from 'vue';
 import RegionModal from './RegionModal.vue';
+import { app } from '../../main.ts'; // 👈 引入你创建的 app 实例
 
 export function useRegionModal() {
     return (countries: any[]): Promise<string | null> => {
@@ -23,14 +24,15 @@ export function useRegionModal() {
                 container.remove();
             };
 
-            render(
-                h(RegionModal, {
-                    show: true,
-                    countries,
-                    onConfirm,
-                    onCancel,
-                }),
-                container);
+            const vnode = h(RegionModal, {
+                show: true,
+                countries,
+                onConfirm,
+                onCancel,
+            })
+
+            vnode.appContext = app._context // 👈 设置 appContext，使得 $t() 能访问
+            render(vnode, container)
         });
     };
 }

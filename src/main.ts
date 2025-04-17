@@ -12,3 +12,5 @@ app.use(createPinia());
 app.use(router);
 app.use(i18n); // 全局绑定，直接使用$t()
 app.mount('#app');
+
+export { app } // 传递全局绑定特征到动态产生的组件
