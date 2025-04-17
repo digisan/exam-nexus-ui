@@ -4,7 +4,7 @@ import RegionModal from './RegionModal.vue';
 import { app } from '../../main.ts'; // 👈 引入你创建的 app 实例
 
 export function useRegionModal() {
-    return (countries: any[]): Promise<string | null> => {
+    return (countries: any[], defaultCode: string): Promise<string | null> => {
         return new Promise((resolve) => {
             const container = document.createElement('div');
             document.body.appendChild(container);
@@ -27,6 +27,7 @@ export function useRegionModal() {
             const vnode = h(RegionModal, {
                 show: true,
                 countries,
+                defaultCode,
                 onConfirm,
                 onCancel,
             })

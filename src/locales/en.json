@@ -1,5 +1,7 @@
 {
     "hello": "Hello",
+    "cancel": "cancel",
+    "confirm": "confirm",
     "welcome": "Welcome to ExamNexus",
     "switchLang": "Switch to Chinese",
     "login": "Sign in",
@@ -21,7 +23,7 @@
     "registering": "Registering...",
     "registering-ok": "Ok, Jumping...",
     "registering-fail": "Failed, Exiting...",
-    "select-country": "Take exam in",
+    "select-country": "Exam in",
     "nd-country": "select exam region",
     "au": "Australia",
     "cn": "China",

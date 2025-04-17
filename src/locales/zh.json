@@ -1,5 +1,7 @@
 {
     "hello": "你好",
+    "cancel": "取消",
+    "confirm": "确定",
     "welcome": "欢迎来到ExamNexus",
     "switchLang": "切换到英文",
     "login": "登录",
@@ -21,7 +23,7 @@
     "registering": "正在注册...",
     "registering-ok": "注册成功，正在跳转...",
     "registering-fail": "注册失败，退出...",
-    "select-country": "考试所在地区",
+    "select-country": "考试地区",
     "nd-country": "未选定地区",
     "au": "澳大利亚",
     "cn": "中国",

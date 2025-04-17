@@ -30,8 +30,8 @@
                 </div>
 
                 <div class="flex justify-end mt-6 gap-2">
-                    <button class="px-4 py-2 text-sm rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition cursor-pointer" @click="cancel"> {{ ('cancel') }} </button>
-                    <button class="px-4 py-2 text-sm rounded-md bg-blue-600 text-white hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer" :disabled="!selected" @click="confirm"> {{ ('confirm') }} </button>
+                    <button class="px-4 py-2 text-sm rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition cursor-pointer" @click="cancel"> {{ $t('cancel') }} </button>
+                    <button class="px-4 py-2 text-sm rounded-md bg-blue-600 text-white hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer" :disabled="!selected" @click="confirm"> {{ $t('confirm') }} </button>
                 </div>
             </div>
         </div>
@@ -42,8 +42,6 @@
 
 import { ref, watch } from 'vue';
 import 'flag-icons/css/flag-icons.min.css';
-// import { useRegionStore } from '../../store/region.ts';
-// const regionStore = useRegionStore(); 
 
 const props = defineProps({
     show: Boolean,
@@ -51,10 +49,11 @@ const props = defineProps({
         type: Array as () => { code: string; name: string; flag: string }[],
         required: true,
     },
+    defaultCode: String,
 });
 
 const emit = defineEmits(['confirm', 'cancel']);
-const selected = ref('');
+const selected = ref(props.defaultCode);
 const showDropdown = ref(false);
 
 watch(() => props.show, (val) => {
