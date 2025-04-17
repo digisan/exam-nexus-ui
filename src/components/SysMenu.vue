@@ -2,13 +2,13 @@
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import barsIcon from "../assets/bars-2.5.svg";
 import langIcon from "../assets/lang-switch.svg";
-import regIcon from "../assets/region-switch.svg";
 import logoutIcon from "../assets/logout.svg";
+import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../store/auth';
 import { useRegionStore } from '../store/region.ts';
-import { useI18n } from 'vue-i18n';
 import { useRegionModal } from "./modal/useRegionModal";
+import { useConfirmModal } from "./modal/useConfirmModal";
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -32,7 +32,7 @@ onMounted(() => { document.addEventListener("click", handleClickOutside); });
 onUnmounted(() => { document.removeEventListener("click", handleClickOutside); });
 
 const primaryText = computed(() => (locale.value === 'zh' ? '中文' : 'English'));
-const secondaryText = computed(() => (locale.value === 'zh' ? 'En' : '中文'));
+const secondaryText = computed(() => (locale.value === 'zh' ? 'English' : '中文'));
 
 const switchLanguage = () => {
     locale.value = locale.value === 'zh' ? 'en' : 'zh';
@@ -57,10 +57,17 @@ const switchRegion = async () => {
     }
 };
 
+const openConfirmModal = useConfirmModal();
+
 const logout = async () => {
-    const flag = await authStore.logout()
-    if (flag) {
-        await router.push('/login');
+    const result = await openConfirmModal('确定退出？');
+    if (result) {
+        const flag = await authStore.logout()
+        if (flag) {
+            await router.push('/login');
+        }
+    } else {
+        console.log('用户取消了退出');
     }
 }
 
@@ -76,7 +83,10 @@ const logout = async () => {
                 <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-left">{{ authStore.user }}</a>
                 <div class="border-t border-gray-200 my-2"></div>
                 <a href="#" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" @click.prevent="switchRegion"> <span :class="`fi fi-${regionStore.country} w-6 h-4 inline mr-2`"></span>{{ $t(regionStore.country) }}</a>
-                <a href="#" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" @click.prevent="switchLanguage"> <img :src="langIcon" alt="" class="w-5 h-5" /><span class="text-[16px] font-bold">{{ primaryText }}</span> / <span class="text-[12px] hover:underline text-gray-400">{{ secondaryText }}</span></a>
+                <a href="#" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" @click.prevent="switchLanguage">
+                    <img :src="langIcon" alt="" class="w-5 h-5" />
+                    <span class="text-[16px] font-bold">{{ primaryText }}</span> / <span class="text-[11px] hover:underline text-gray-400">{{ secondaryText }}</span>
+                </a>
                 <a href="#" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" @click.prevent="logout"> <img :src="logoutIcon" alt="" class="w-5 h-5" />{{ $t('logout') }}</a>
             </div>
         </div>

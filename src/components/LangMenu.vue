@@ -27,7 +27,7 @@ onUnmounted(() => {
 });
 
 const primaryText = computed(() => (locale.value === 'zh' ? '中文' : 'English'));
-const secondaryText = computed(() => (locale.value === 'zh' ? 'En' : '中文'));
+const secondaryText = computed(() => (locale.value === 'zh' ? 'English' : '中文'));
 
 const switchLanguage = () => {
     locale.value = locale.value === 'zh' ? 'en' : 'zh';
@@ -43,7 +43,10 @@ const switchLanguage = () => {
                 <img :src="barsIcon" alt="menu" class="w-8 h-8">
             </button>
             <div v-show="isOpen" class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2">
-                <a href="#" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" @click.prevent="switchLanguage"> <img :src="langIcon" alt="" class="w-5 h-5" /><span class="text-[16px] font-bold">{{ primaryText }}</span> / <span class="text-[12px] hover:underline text-gray-400">{{ secondaryText }}</span></a>
+                <a href="#" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md" @click.prevent="switchLanguage">
+                    <img :src="langIcon" alt="" class="w-5 h-5" />
+                    <span class="text-[16px] font-bold">{{ primaryText }}</span> / <span class="text-[11px] hover:underline text-gray-400">{{ secondaryText }}</span>
+                </a>
             </div>
         </div>
     </div>
