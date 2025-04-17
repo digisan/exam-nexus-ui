@@ -42,6 +42,8 @@
 
 import { ref, watch } from 'vue';
 import 'flag-icons/css/flag-icons.min.css';
+// import { useRegionStore } from '../../store/region.ts';
+// const regionStore = useRegionStore(); 
 
 const props = defineProps({
     show: Boolean,

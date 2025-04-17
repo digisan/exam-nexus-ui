@@ -35,9 +35,7 @@ import { useRouter } from 'vue-router';
 import { useLoadingStore } from '../../store/loading';
 
 const loading = useLoadingStore()
-
 const router = useRouter()
-
 const authStore = useAuthStore()
 
 const email = ref('');
